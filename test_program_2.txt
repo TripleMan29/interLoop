@@ -1,0 +1,13 @@
+i := 2
+a := 0
+IF i < 3 THEN
+    IF i > 3 THEN
+        a := 1
+    ENDIF
+ELSE
+    IF i < 3 THEN
+        a := 3
+    ELSE
+        a := 4
+    ENDIF
+ENDIF

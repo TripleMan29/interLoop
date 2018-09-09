@@ -1,0 +1,7 @@
+i:=1703
+result := 0
+LOOP i DO
+    result := result + 1
+END
+
+

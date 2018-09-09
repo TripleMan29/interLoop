@@ -1,0 +1,6 @@
+power := 10
+number := 2
+i := 1
+LOOP power DO
+    i := i * number
+END
