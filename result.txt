@@ -1,1 +1,1 @@
-result = 1024
+result = 1
