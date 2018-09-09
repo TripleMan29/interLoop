@@ -1,13 +1,11 @@
 i := 2
-a := 0
+result := 0
 IF i < 3 THEN
-    IF i > 3 THEN
-        a := 1
-    ENDIF
+    result := 1
 ELSE
-    IF i < 3 THEN
-        a := 3
+    IF i > 6 THEN
+        result := 3
     ELSE
-        a := 4
+        result := 4
     ENDIF
 ENDIF
