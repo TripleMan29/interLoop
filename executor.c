@@ -1,8 +1,6 @@
-#include <stdio.h>
+
 #include <stdlib.h>
-#include <setjmp.h>
 #include <mem.h>
-#include <ctype.h>
 
 #include "headers/loader.h"
 #include "headers/tokenReader.h"
@@ -11,7 +9,6 @@
 #include "headers/loop.h"
 #include "headers/variables.h"
 
-void putBack(struct Program *program);
 void executeToken(struct Program *program);
 void endProgram(struct Program *program);
 void executeLoop(struct Program *program);
@@ -51,7 +48,6 @@ void endProgram(struct Program *program) {
     free(program->currentToken.name);
     free(program->loopStack.stack);
     free(program->startChar);
-    //free(program->variablesPointer);
 }
 
 void executeToken(struct Program *program) {
@@ -82,8 +78,7 @@ void executeToken(struct Program *program) {
 void assignment(struct Program *program) {
     int value;
     struct Variable *var;
-    if ((var = findVariable(program->currentToken.name, program)) == NULL)
-        var = addVariable(program->currentToken.name, program);
+    var = findVariable(program->currentToken.name, program);
     readToken(program); //Считываем равно
     calcExpression(&value, program); //Вычисляем выражение
     var->value = value;
@@ -102,7 +97,7 @@ void executeIf(struct Program *program) {
     operation = *program->currentToken.name;
     calcExpression(&rightExp, program);  //Получаем правое выражение
 
-    putBack(program);
+//    putBack(program);
     condition = 0;
 
     switch (operation) {
@@ -178,12 +173,6 @@ void skipToEndif(struct Program *program) {
     }
 }
 
-void putBack(struct Program *program) {
-    char *t;
-    t = program->currentToken.name;
-    for (; *t; t++) program->currentChar--;
-}
-
 void executeEnd(struct Program *program) {
     struct Loop loop;
 
@@ -198,8 +187,6 @@ void executeEnd(struct Program *program) {
 
 void executeLoop(struct Program *program) {
     struct Loop currentLoop;
-
-    //readToken(); //Чтение переменной-счётчика
 
     currentLoop.source = 1;
 
@@ -234,11 +221,9 @@ void executeLoop(struct Program *program) {
         return;
     }
 
-    //readToken();
     if (program->currentToken.id != DO)
         printError("Expected \"DO\" in LOOP construction");
     currentLoop.cycleStart = program->currentChar;
     loopPush(currentLoop, program);
-
 }
 

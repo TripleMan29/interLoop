@@ -7,7 +7,7 @@
 int main(int argc, char *argv[]) {
 
     if (argc != 3) {
-        printf("Wrong format.\nUse: <executable file>.exe <out variables>.txt");
+        printf("Wrong format.\nUse: <executable file>.txt <out variables>.txt");
         exit(1);
     }
 
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     executableProgram.currentChar = memory;
     executableProgram.fileNameOutVariables = fileNameVariables;
     executableProgram.variablesCounter = 0;
-    executableProgram.variablesPointer = (struct Variable*) malloc(sizeof(struct Variable));
+    executableProgram.variablesPointer = NULL;
 
     execute(executableProgram);
 
@@ -48,7 +48,6 @@ void readFile(char *fileNameProgram, char *memory) {
         point++;
     } while (!feof(file));
     *(point - 1) = '\0';
-
     fclose(file);
 }
 

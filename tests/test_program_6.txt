@@ -1,0 +1,7 @@
+i := 6
+LOOP i DO
+    IF i < (20)*7/10 THEN
+    i := i + 1
+    result := result + 1
+    ENDIF
+END

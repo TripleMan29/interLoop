@@ -1,4 +1,4 @@
-power := 10
+power := 20
 number := 2
 result := 1
 LOOP power DO

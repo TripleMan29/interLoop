@@ -1,10 +1,6 @@
 #ifndef INTERPRETERLOOPNEW_LOADER_H
 #define INTERPRETERLOOPNEW_LOADER_H
 
-#define INITIALIZED 1
-#define EXECUTING 2
-#define ENDED 3
-
 #include "executor.h"
 
 struct Program {

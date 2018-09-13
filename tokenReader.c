@@ -20,8 +20,6 @@ struct Command commands[] = {
         "ENDIF", ENDIF
 };
 
-int getIdCommand(char *command) ;
-
 int isWhite(char c) {
     if (c == ' ' || c == '\t') return 1;
     else return 0;
@@ -34,7 +32,6 @@ int isDelim(char c) {
 }
 
 void readToken(struct Program *program) {
-//    char *token = TOKEN.name;
     free(TOKEN.name);
     TOKEN.id = 0;
     TOKEN.type = 0;
@@ -43,8 +40,7 @@ void readToken(struct Program *program) {
         CHAR++;
 
     //Проверка конца программы
-    if (*CHAR == 0) {
-//        *TOKEN.name = 0;
+    if (*CHAR == '\0') {
         TOKEN.id = FINISHED;
         TOKEN.type = DELIMITER;
         return;
@@ -52,8 +48,6 @@ void readToken(struct Program *program) {
 
     //Проверка конца строки
     if (*CHAR == '\n') {
-//        *token++ = *CHAR++;
-//        *token = '\0';
         CHAR++;
         TOKEN.id = EOL;
         TOKEN.type = DELIMITER;
@@ -112,11 +106,13 @@ void readToken(struct Program *program) {
 
 }
 
-char * mallocAndCopy(char *source, int steps) {
+char *mallocAndCopy(char *source, int steps) {
     char *resultPointer = (char*) malloc((size_t) sizeof(char)*(steps + 1));
     char *tempPointer = resultPointer;
     for (int i = 0; i < steps; i++) {
-        *tempPointer++ = *source++;
+        *tempPointer = *source;
+        tempPointer++;
+        source++;
     }
     *tempPointer = '\0';
     return resultPointer;

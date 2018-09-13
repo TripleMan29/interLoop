@@ -1,4 +1,4 @@
+i:=2
 result := 0
-LOOP ((10*10+2)%5)/2 DO
+LOOP i DO
     result := result + 1
-END
